@@ -1,0 +1,16 @@
+@use 'variables';
+@use 'fonts';
+@use 'icons';
+@use 'mixins';
+@use 'base';
+@use 'layout';
+@use 'components';
+@use 'print-layout';
+
+// Ctrl+P on the online page produces the same true-A4 sheet as print.html.
+// Declared last so it overrides the screen styles above.
+@media print {
+  @include print-layout.layout;
+  @include print-layout.screen-overrides;
+  @include print-layout.page-setup;
+}

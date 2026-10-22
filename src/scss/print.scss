@@ -1,0 +1,36 @@
+// Stylesheet for dist/print.html: true-A4 CV sheet.
+// On screen it previews as a centered A4 page; printed (or headless Chrome) it is exact A4.
+
+@use 'sass:map';
+@use 'variables';
+@use 'fonts';
+@use 'icons';
+@use 'print-layout';
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  list-style: none;
+  font-family: variables.$font-family;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@include print-layout.layout;
+
+// Screen preview niceties (ignored in print)
+@media screen {
+  body {
+    background-color: map.get(variables.$colors, primary);
+    padding: 1.5rem 0;
+  }
+
+  .main-content {
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+  }
+}
+
+@media print {
+  @include print-layout.page-setup;
+}

@@ -20,13 +20,28 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # ubuntu-latest ships Node and Google Chrome; build.mjs finds /usr/bin/google-chrome.
-      - name: Build PDF
-        run: node build.mjs
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: browser-actions/setup-chrome@v1
+        id: chrome
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build site + PDF
+        run: npm run build:pdf
+        env:
+          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: dist
 
   deploy:
     needs: build
