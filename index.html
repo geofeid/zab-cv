@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nektarios Zabouris — IT Support Engineer</title>
+<meta name="description" content="Online CV of Nektarios Zabouris, IT Support Engineer at Adaptit S.A. in Athens: Level 1 support, Microsoft 365 administration and nationwide Huawei network deployments.">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Nektarios Zabouris — IT Support Engineer">
+<meta property="og:description" content="Level 1 support, Microsoft 365 administration and nationwide Huawei network deployments at Adaptit S.A., Athens.">
+<meta name="theme-color" content="#0f3b40">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230f3b40'/%3E%3Cg fill='%23f4a62a'%3E%3Crect x='6' y='19' width='4' height='7' rx='1'/%3E%3Crect x='12' y='15' width='4' height='11' rx='1'/%3E%3Crect x='18' y='11' width='4' height='15' rx='1'/%3E%3Crect x='24' y='6' width='4' height='20' rx='1'/%3E%3C/g%3E%3C/svg%3E">
+<style>
+/* Self-hosted on purpose: the headless Chrome that prints the PDF must render
+   the same fonts locally and in CI, or the sheet reflows onto another page. */
+@font-face { font-family: "Manrope"; src: url("fonts/Manrope-VF.woff2") format("woff2"); font-weight: 200 800; font-display: swap; }
+@font-face { font-family: "Geom"; src: url("fonts/Geom-VF.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+
+/* Palette taken from a network port: green link LED, amber activity LED. */
+:root {
+  --petrol: #0f3b40;
+  --amber: #f4a62a;
+  --led: #3ddc84;
+  --teal: #0b6e64;
+  --ink: #1c2a2e;
+  --ink-soft: #52656a;
+  --paper: #fff;
+  --mist: #e2ebe9;
+  --rule: #d6e1df;
+  --node: #a9c6c1;
+  --on-petrol: #e4efed;
+  --on-petrol-soft: #9fc2bc;
+  --display: "Geom", "Manrope", system-ui, sans-serif;
+  --text: "Manrope", system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+/* Type grows with the screen: 15px on phones, ~17px at 1400px, 20px on wide monitors. */
+html { font-size: clamp(15px, 0.5vw + 10px, 20px); }
+body { font-family: var(--text); font-size: 1rem; line-height: 1.6; color: var(--ink); background: var(--mist); -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.ic { width: 1.05em; height: 1.05em; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* The PDF prints shorter copies of some text so the sheet holds one A4 page. */
+.print-only { display: none; }
+
+/* DOM order is id, skills, main so print can float the sidebar;
+   grid areas put main before skills on narrow screens. */
+.card {
+  width: 95%; margin: 2rem auto; background: var(--petrol); border-radius: 8px; overflow: hidden;
+  box-shadow: 0 1px 2px rgb(15 59 64 / .08), 0 18px 48px -12px rgb(15 59 64 / .22);
+  display: grid; grid-template-columns: minmax(21rem, 2fr) 5fr; grid-template-rows: auto 1fr;
+  grid-template-areas: "id main" "skills main";
+}
+/* The card itself is the sidebar colour, so id and skills never show a seam between them. */
+.id, .skills { color: var(--on-petrol); padding: 0 2.5rem; }
+.id { grid-area: id; padding-top: 3.25rem; }
+.skills { grid-area: skills; padding-bottom: 3.25rem; }
+.main { grid-area: main; padding: 3.25rem 4rem 4rem; min-width: 0; background: var(--paper); }
+
+/* Sidebar */
+.name { font-family: var(--display); font-weight: 800; font-size: min(2.6rem, 3.1vw); line-height: .95; letter-spacing: -.01em; text-transform: uppercase; color: #fff; }
+.name span { display: block; }
+.role { margin-top: 1.2rem; font-size: .9rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--amber); }
+.org { font-size: 1.05rem; color: var(--on-petrol-soft); }
+.btn { display: inline-flex; align-items: center; gap: .55rem; margin-top: 1.7rem; padding: .75rem 1.2rem; border-radius: 6px; background: var(--amber); color: var(--petrol); font-size: 1rem; font-weight: 700; text-decoration: none; transition: background-color .15s; }
+.btn:hover { background: #ffbb4d; }
+.id a:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 3px; }
+.contact { margin-top: 2.2rem; display: grid; gap: .75rem; font-size: 1rem; }
+.contact li { display: flex; align-items: center; gap: .8rem; overflow-wrap: anywhere; }
+.contact .ic { color: var(--on-petrol-soft); }
+.contact a { text-decoration: none; }
+.contact a:hover { text-decoration: underline; }
+.contact .print-only { display: none; } /* the PDF links back to the online CV */
+.label { margin: 2.6rem 0 .9rem; font-size: .82rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--on-petrol-soft); }
+
+/* Skill level as signal strength, 1-5 bars */
+.meter li { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; padding: .55rem 0; border-top: 1px solid rgb(255 255 255 / .09); font-size: .98rem; line-height: 1.35; }
+.meter li:first-child { border-top: 0; padding-top: 0; }
+.signal { display: inline-flex; align-items: flex-end; gap: 3px; height: 1.15rem; flex: none; margin-bottom: .1rem; }
+.signal i { width: 5px; border-radius: 1px; background: rgb(255 255 255 / .17); }
+.signal i:nth-child(1) { height: 30%; }
+.signal i:nth-child(2) { height: 47.5%; }
+.signal i:nth-child(3) { height: 65%; }
+.signal i:nth-child(4) { height: 82.5%; }
+.signal i:nth-child(5) { height: 100%; }
+.signal[data-level="1"] i:nth-child(-n+1),
+.signal[data-level="2"] i:nth-child(-n+2),
+.signal[data-level="3"] i:nth-child(-n+3),
+.signal[data-level="4"] i:nth-child(-n+4),
+.signal[data-level="5"] i:nth-child(-n+5) { background: var(--amber); }
+
+.chips { display: flex; flex-wrap: wrap; gap: .45rem; }
+.chips li { padding: .36rem .75rem; border: 1px solid rgb(255 255 255 / .18); border-radius: 999px; font-size: .86rem; line-height: 1.2; }
+.hobbies { font-size: .98rem; }
+
+/* Main column */
+.sec + .sec { margin-top: 3.25rem; }
+.sec > h2 { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.6rem; font-size: .92rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--teal); }
+.sec > h2::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
+.about p { font-size: 1.15rem; line-height: 1.7; }
+.about p + p { margin-top: .85rem; }
+
+/* Timeline: the node is a port LED. Green = current role, amber = in progress. */
+.timeline > li, .projects > div { display: grid; grid-template-columns: minmax(9rem, 1fr) 4fr; }
+.when { padding: .2rem 1.5rem 0 0; font-size: .95rem; font-weight: 600; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.what { position: relative; border-left: 1px solid var(--rule); padding: 0 0 2.2rem 1.9rem; }
+.timeline > li:last-child .what { padding-bottom: 0; }
+.what::before { content: ""; position: absolute; left: -5px; top: calc(.85rem - 5px); width: 9px; height: 9px; border-radius: 2px; background: var(--paper); border: 2px solid var(--node); }
+.now .what::before { background: var(--led); border-color: var(--led); box-shadow: 0 0 0 3px rgb(61 220 132 / .22); }
+.ongoing .what::before { background: var(--amber); border-color: var(--amber); box-shadow: 0 0 0 3px rgb(244 166 42 / .22); }
+@media (prefers-reduced-motion: no-preference) {
+  .now .what::before { animation: link 2.4s ease-in-out infinite; }
+  @keyframes link { 50% { opacity: .45; } }
+}
+.what h3 { font-family: var(--display); font-size: 1.3rem; font-weight: 700; line-height: 1.3; }
+.at { margin-top: .1rem; font-size: 1rem; font-weight: 600; color: var(--teal); }
+.paras { margin-top: .65rem; font-size: 1.05rem; color: #2c3b3f; }
+.paras p + p { margin-top: .55rem; }
+
+.projects > div { padding: .95rem 0; border-top: 1px solid var(--rule); }
+.projects > div:first-child { border-top: 0; padding-top: 0; }
+.projects dt { padding: .15rem 1.5rem 0 0; font-size: .9rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); }
+.projects dd { font-size: 1.05rem; }
+
+@media (max-width: 900px) {
+  .card { width: auto; margin: 0; border-radius: 0; box-shadow: none; grid-template-columns: 1fr; grid-template-areas: "id" "main" "skills"; }
+  .id { padding: 2.5rem 1.5rem 2.25rem; }
+  .skills { padding: .5rem 1.5rem 2.5rem; }
+  .main { padding: 2.5rem 1.5rem; }
+  .name { font-size: 2.6rem; }
+}
+@media (max-width: 560px) {
+  .name { font-size: 2.2rem; }
+  .timeline > li, .projects > div { grid-template-columns: 1fr; }
+  .when { border-left: 1px solid var(--rule); padding: 0 0 .3rem 1.9rem; }
+  .projects dt { padding-bottom: .25rem; }
+}
+
+/* The PDF: one A4 page printed from this same page by build.mjs. */
+@page { size: A4; margin: 0; }
+@media print {
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html { font-size: 7.6pt; }
+  body { background: var(--paper); }
+  /* Fixed boxes print on every page: this is the full-height sidebar colour. */
+  body::before { content: ""; position: fixed; top: 0; bottom: 0; left: 0; width: 31%; background: var(--petrol); z-index: -1; }
+  .card { display: block; width: auto; margin: 0; border-radius: 0; box-shadow: none; overflow: visible; background: none; }
+  .id, .skills { float: left; clear: left; width: 31%; padding-left: 8mm; padding-right: 7mm; }
+  .id { padding-top: 11mm; }
+  .main { margin-left: 31%; padding: 11mm 10mm 0 8mm; background: none; }
+  .name { font-size: 2.7rem; }
+  .btn, .screen-only { display: none; }
+  .print-only { display: block; }
+  .contact .print-only { display: flex; }
+  .sec + .sec { margin-top: 1.6rem; }
+  .sec > h2 { margin-bottom: .9rem; }
+  .timeline > li, .projects > div { grid-template-columns: 27mm 1fr; break-inside: avoid; }
+  .what { padding-bottom: 1.1rem; }
+  .what h3, .what .at { display: inline; }
+  .what .at::before { content: " · "; }
+  .paras { margin-top: .25rem; }
+  .projects > div { padding: .5rem 0; }
+  .now .what::before { animation: none; }
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+  <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20M2 12h20"/></symbol>
+</svg>
+
+<div class="card">
+  <header class="id">
+    <h1 class="name">Nektarios <span>Zabouris</span></h1>
+    <p class="role">IT Support Engineer</p>
+    <p class="org">Adaptit S.A.</p>
+    <a class="btn" href="Nektarios_Zabouris_CV.pdf" download><svg class="ic" aria-hidden="true"><use href="#i-download"/></svg>Download CV (PDF)</a>
+    <ul class="contact">
+      <li class="print-only"><svg class="ic" aria-hidden="true"><use href="#i-globe"/></svg><a href="https://geofeid.github.io/zab-cv/">geofeid.github.io/zab-cv</a></li>
+      <li><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><a href="tel:+306970156896">+30 697 015 6896</a></li>
+      <li><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg><a href="mailto:nzabouris@outlook.com">nzabouris@outlook.com</a></li>
+      <li><svg class="ic" aria-hidden="true"><use href="#i-linkedin"/></svg><a href="https://www.linkedin.com/in/nektarios-zabouris">linkedin.com/in/nektarios-zabouris</a></li>
+      <li><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>Ag. Stefanos, Athens</li>
+    </ul>
+  </header>
+
+  <aside class="skills">
+    <h2 class="label">Technical skills</h2>
+    <ul class="meter">
+      <li>Office 365 &amp; Microsoft Outlook Administration<span class="signal" data-level="3" role="img" aria-label="3 of 5"><i></i><i></i><i></i><i></i><i></i></span></li>
+      <li>Technical Support: Hardware, Software, IT Systems<span class="signal" data-level="3" role="img" aria-label="3 of 5"><i></i><i></i><i></i><i></i><i></i></span></li>
+      <li>Android &amp; iOS<span class="signal" data-level="4" role="img" aria-label="4 of 5"><i></i><i></i><i></i><i></i><i></i></span></li>
+      <li>Windows &amp; macOS<span class="signal" data-level="4" role="img" aria-label="4 of 5"><i></i><i></i><i></i><i></i><i></i></span></li>
+      <li>ERP, Kefalaio, CRM, SRS<span class="signal" data-level="3" role="img" aria-label="3 of 5"><i></i><i></i><i></i><i></i><i></i></span></li>
+    </ul>
+
+    <h2 class="label">Soft skills</h2>
+    <ul class="chips">
+      <li>Highly Organized &amp; Results Driven</li>
+      <li>Team Worker / Player</li>
+      <li>Creative</li>
+      <li>Communication</li>
+      <li>Empathy</li>
+      <li>Self-Motivated</li>
+      <li>Flexibility</li>
+      <li>Adaptability</li>
+      <li>Time Management</li>
+      <li>Attention to Detail</li>
+      <li>Work Ethic</li>
+      <li>Interpersonal Skills</li>
+    </ul>
+
+    <h2 class="label">Languages</h2>
+    <ul class="meter">
+      <li>Greek<span class="signal" data-level="5" role="img" aria-label="5 of 5"><i></i><i></i><i></i><i></i><i></i></span></li>
+      <li>English<span class="signal" data-level="3" role="img" aria-label="3 of 5"><i></i><i></i><i></i><i></i><i></i></span></li>
+    </ul>
+
+    <h2 class="label">Hobbies</h2>
+    <p class="hobbies">Basketball · Hiking · Travel · Books · Volunteering</p>
+  </aside>
+
+  <main class="main">
+    <section class="sec about">
+      <h2>About</h2>
+      <div class="screen-only">
+        <p>I am a passionate IT Support Engineer with a strong interest in technology, particularly mobile devices and computers. Skilled in resolving technical challenges, providing prompt user support, and quickly adapting to new tools and systems. Known for being a fast learner, self-motivated, and solution-oriented.</p>
+        <p>I aim to grow my expertise in system administration and advanced technical support while contributing to projects that enhance user experiences. Seeking opportunities in dynamic environments where I can apply my skills and embrace new challenges to deliver impactful IT solutions.</p>
+      </div>
+      <p class="print-only">Passionate IT Support Engineer with a strong interest in technology, particularly mobile devices and computers. Skilled in resolving technical challenges, providing prompt user support and quickly adapting to new tools and systems. A fast learner, self-motivated and solution-oriented, aiming to grow in system administration and advanced technical support.</p>
+    </section>
+
+    <section class="sec">
+      <h2>Work experience</h2>
+      <ol class="timeline">
+        <li class="now">
+          <p class="when">Jul 2024 – Present</p>
+          <div class="what">
+            <h3>IT Support Engineer</h3>
+            <p class="at">Adaptit S.A. · Ag. Stefanos</p>
+            <div class="paras screen-only">
+              <p>Provide Level 1 technical support to internal users and external clients across multiple environments, monitoring ticketing systems to ensure timely issue resolution and client communication.</p>
+              <p>Manage and maintain Microsoft 365 services through the Admin Center, and support IT infrastructure and software deployment for customer projects.</p>
+              <p>Participate in continuous training on new systems and IT solutions to enhance service delivery.</p>
+            </div>
+            <p class="paras print-only">Provide Level 1 support to internal users and external clients across multiple environments. Manage Microsoft 365 through the Admin Center. Support IT infrastructure and software deployment for customer projects. Monitor ticketing for timely resolution and client communication.</p>
+          </div>
+        </li>
+        <li>
+          <p class="when">Mar 2022 – Jun 2024</p>
+          <div class="what">
+            <h3>Store Manager</h3>
+            <p class="at">iRepair S.A. · Nea Erythraia &amp; Maroussi</p>
+            <div class="paras screen-only">
+              <p>Diagnosed and repaired mobile phones, tablets and computers, from mobile device troubleshooting to hardware repair, while handling client relations and services.</p>
+              <p>Managed multi-store operations across both stores, covering sales, the storefront, invoice entry and communication with suppliers.</p>
+              <p>Supervised technicians, created the monthly shift schedules and oversaw store management, complaint handling and technical training.</p>
+            </div>
+            <p class="paras print-only">Repaired mobile phones, tablets and computers across two stores. Supervised technicians, planned monthly shifts, and handled technical training, sales, invoices, suppliers and complaints.</p>
+          </div>
+        </li>
+        <li>
+          <p class="when">May 2021 – Feb 2022</p>
+          <div class="what">
+            <h3>Engineer</h3>
+            <p class="at">Hellenic Army (Engineering Corps) · Komotini, Loutraki</p>
+            <p class="paras">Assisted in IT and communication system operations within the Engineering Corps.</p>
+          </div>
+        </li>
+        <li>
+          <p class="when">Oct 2020 – Apr 2021</p>
+          <div class="what">
+            <h3>Administrative Support</h3>
+            <p class="at">N. Zabouris – V. Simotas IKE · Peristeri</p>
+            <p class="paras">Handled and monitored cash flow and finance transactions, managed invoices and orders, and negotiated with clients and suppliers.</p>
+          </div>
+        </li>
+        <li>
+          <p class="when">Mar 2017 – Sep 2020</p>
+          <div class="what">
+            <h3>Mobile Service Technician</h3>
+            <p class="at">Germanos · Ag. Stefanos</p>
+            <p class="paras">Provided technical support and repairs for devices, while also managing sales and cash operations.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="sec">
+      <h2>Projects · Adaptit S.A.</h2>
+      <dl class="projects screen-only">
+        <div><dt>WIFI4GR</dt><dd>Configured and deployed 480 Huawei firewalls, onboarded over 1,000 access points to the Huawei iMaster NCE platform, and provided monitoring and technical support for nationwide network infrastructure.</dd></div>
+        <div><dt>HCG Rooms</dt><dd>Provided technical support for three high-technology conference rooms, including cameras, microphones, monitoring systems, and related audiovisual equipment.</dd></div>
+        <div><dt>EEA</dt><dd>Provided IT Helpdesk support as an outsourced engineer, handling incident management, end-user troubleshooting, and day-to-day technical support activities.</dd></div>
+        <div><dt>FISH</dt><dd>Supported tablet deliverables regarding their software and hardware functionality; monitored the ticketing system for a Public Sector Client.</dd></div>
+        <div><dt>APIS</dt><dd>Provided support for a passenger control software program for a Public Sector Client.</dd></div>
+        <div><dt>OTDR</dt><dd>Monitored the ticketing system and provided Level 1 support for a private energy company.</dd></div>
+        <div><dt>Religious Greece</dt><dd>Supported the website and managed backups via the Acronis platform for a major religious cultural heritage organisation in Athens.</dd></div>
+      </dl>
+      <dl class="projects print-only">
+        <div><dt>WIFI4GR</dt><dd>Deployed 480 Huawei firewalls and onboarded 1,000+ access points to iMaster NCE nationwide.</dd></div>
+        <div><dt>HCG Rooms</dt><dd>Supported three high-tech conference rooms: cameras, microphones, monitoring and AV equipment.</dd></div>
+        <div><dt>EEA</dt><dd>Provided outsourced IT Helpdesk support: incident management and end-user troubleshooting.</dd></div>
+        <div><dt>FISH · APIS · OTDR</dt><dd>Public-sector tablet and passenger-control software support; ticketing for an energy company.</dd></div>
+        <div><dt>Religious Greece</dt><dd>Supported the website and managed Acronis backups for a major religious heritage organisation.</dd></div>
+      </dl>
+    </section>
+
+    <section class="sec">
+      <h2>Education</h2>
+      <ol class="timeline">
+        <li class="ongoing">
+          <p class="when">Oct 2015 – Present</p>
+          <div class="what">
+            <h3>Department of Electrical &amp; Electronic Engineering</h3>
+            <p class="at">University of West Attica (UNIWA) · Athens</p>
+            <p class="paras">Ongoing studies focused on computer systems, electronics, and IT technologies.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="sec">
+      <h2>Certifications</h2>
+      <ol class="timeline">
+        <li class="ongoing">
+          <p class="when">Nov 2026 – Present</p>
+          <div class="what">
+            <h3>Cisco CCNA (200-301)</h3>
+            <p class="at">Training in progress</p>
+            <p class="paras">Network fundamentals and access, IP connectivity and services, security fundamentals, automation and programmability.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+  </main>
+</div>
+</body>
+</html>

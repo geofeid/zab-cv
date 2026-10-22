@@ -1,7 +1,2 @@
-node_modules/
-dist/
-src/html/preview.html
-src/html/.preview-reload.txt
-src/html/css/
-src/html/fonts/
+*.pdf
 .claude/
