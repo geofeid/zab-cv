@@ -60,26 +60,28 @@ a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; 
 .main { grid-area: main; padding: 3.25rem 4rem 4rem; min-width: 0; background: var(--paper); }
 
 /* Sidebar */
-.name { font-family: var(--display); font-weight: 800; font-size: min(2.6rem, 3.1vw); line-height: .95; letter-spacing: -.01em; text-transform: uppercase; color: #fff; }
+.photo { display: block; width: 10rem; height: 10rem; margin-bottom: 1.8rem; border-radius: 50%; object-fit: cover; border: 3px solid var(--amber); box-shadow: 0 0 0 6px rgb(244 166 42 / .14); }
+.name { font-family: var(--display); font-weight: 800; font-size: min(3rem, 3.4vw); line-height: .95; letter-spacing: -.01em; text-transform: uppercase; color: #fff; }
 .name span { display: block; }
-.role { margin-top: 1.2rem; font-size: .9rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--amber); }
-.org { font-size: 1.05rem; color: var(--on-petrol-soft); }
-.btn { display: inline-flex; align-items: center; gap: .55rem; margin-top: 1.7rem; padding: .75rem 1.2rem; border-radius: 6px; background: var(--amber); color: var(--petrol); font-size: 1rem; font-weight: 700; text-decoration: none; transition: background-color .15s; }
+.role { margin-top: 1.3rem; font-size: 1rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--amber); }
+.org { font-size: 1.15rem; color: var(--on-petrol-soft); }
+.btn { display: inline-flex; align-items: center; gap: .6rem; margin-top: 1.9rem; padding: .85rem 1.35rem; border-radius: 6px; background: var(--amber); color: var(--petrol); font-size: 1.08rem; font-weight: 700; text-decoration: none; transition: background-color .15s; }
 .btn:hover { background: #ffbb4d; }
 .id a:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 3px; }
-.contact { margin-top: 2.2rem; display: grid; gap: .75rem; font-size: 1rem; }
-.contact li { display: flex; align-items: center; gap: .8rem; overflow-wrap: anywhere; }
+.contact { margin-top: 2.4rem; display: grid; gap: 1rem; font-size: 1.08rem; }
+.contact li { display: flex; align-items: center; gap: .9rem; overflow-wrap: anywhere; }
 .contact .ic { color: var(--on-petrol-soft); }
 .contact a { text-decoration: none; }
 .contact a:hover { text-decoration: underline; }
 .contact .print-only { display: none; } /* the PDF links back to the online CV */
-.label { margin: 2.6rem 0 .9rem; font-size: .82rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--on-petrol-soft); }
+.label { margin: 3rem 0 1.1rem; font-size: .95rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--on-petrol-soft); }
 
 /* Skill level as signal strength, 1-5 bars */
-.meter li { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; padding: .55rem 0; border-top: 1px solid rgb(255 255 255 / .09); font-size: .98rem; line-height: 1.35; }
-.meter li:first-child { border-top: 0; padding-top: 0; }
-.signal { display: inline-flex; align-items: flex-end; gap: 3px; height: 1.15rem; flex: none; margin-bottom: .1rem; }
-.signal i { width: 5px; border-radius: 1px; background: rgb(255 255 255 / .17); }
+/* Every row gets the same generous height, so the column reads evenly. */
+.meter li { display: flex; align-items: center; justify-content: space-between; gap: 1.25rem; min-height: 3.4rem; padding: .7rem 0; border-top: 1px solid rgb(255 255 255 / .09); font-size: 1.08rem; line-height: 1.35; }
+.meter li:first-child { border-top: 0; }
+.signal { display: inline-flex; align-items: flex-end; gap: 3px; height: 1.4rem; flex: none; }
+.signal i { width: 6px; border-radius: 1px; background: rgb(255 255 255 / .17); }
 .signal i:nth-child(1) { height: 30%; }
 .signal i:nth-child(2) { height: 47.5%; }
 .signal i:nth-child(3) { height: 65%; }
@@ -91,9 +93,9 @@ a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; 
 .signal[data-level="4"] i:nth-child(-n+4),
 .signal[data-level="5"] i:nth-child(-n+5) { background: var(--amber); }
 
-.chips { display: flex; flex-wrap: wrap; gap: .45rem; }
-.chips li { padding: .36rem .75rem; border: 1px solid rgb(255 255 255 / .18); border-radius: 999px; font-size: .86rem; line-height: 1.2; }
-.hobbies { font-size: .98rem; }
+.chips { display: flex; flex-wrap: wrap; gap: .6rem; }
+.chips li { padding: .5rem .95rem; border: 1px solid rgb(255 255 255 / .18); border-radius: 999px; font-size: .98rem; line-height: 1.2; }
+.hobbies { font-size: 1.08rem; line-height: 1.9; }
 
 /* Main column */
 .sec + .sec { margin-top: 3.25rem; }
@@ -103,7 +105,7 @@ a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; 
 .about p + p { margin-top: .85rem; }
 
 /* Timeline: the node is a port LED. Green = current role, amber = in progress. */
-.timeline > li, .projects > div { display: grid; grid-template-columns: minmax(9rem, 1fr) 4fr; }
+.timeline > li, .projects > div { display: grid; grid-template-columns: minmax(11rem, 1fr) 4fr; }
 .when { padding: .2rem 1.5rem 0 0; font-size: .95rem; font-weight: 600; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
 .what { position: relative; border-left: 1px solid var(--rule); padding: 0 0 2.2rem 1.9rem; }
 .timeline > li:last-child .what { padding-bottom: 0; }
@@ -151,12 +153,19 @@ a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; 
   .id { padding-top: 11mm; }
   .main { margin-left: 31%; padding: 11mm 10mm 0 8mm; background: none; }
   .name { font-size: 2.7rem; }
+  .photo { width: 26mm; height: 26mm; margin-bottom: 4mm; }
+  /* The roomy screen sidebar is tightened so it fits beside one page of content. */
+  .contact { margin-top: 1.4rem; gap: .55rem; }
+  .label { margin: 1.7rem 0 .6rem; }
+  .meter li { min-height: 0; padding: .45rem 0; }
+  .chips { gap: .4rem; }
+  .chips li { padding: .3rem .6rem; }
   .btn, .screen-only { display: none; }
   .print-only { display: block; }
   .contact .print-only { display: flex; }
   .sec + .sec { margin-top: 1.6rem; }
   .sec > h2 { margin-bottom: .9rem; }
-  .timeline > li, .projects > div { grid-template-columns: 27mm 1fr; break-inside: avoid; }
+  .timeline > li, .projects > div { grid-template-columns: 30mm 1fr; break-inside: avoid; }
   .what { padding-bottom: 1.1rem; }
   .what h3, .what .at { display: inline; }
   .what .at::before { content: " · "; }
@@ -178,6 +187,7 @@ a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; 
 
 <div class="card">
   <header class="id">
+    <img class="photo" src="nektarios.webp" alt="Nektarios Zabouris" width="400" height="400">
     <h1 class="name">Nektarios <span>Zabouris</span></h1>
     <p class="role">IT Support Engineer</p>
     <p class="org">Adaptit S.A.</p>
