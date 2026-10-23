@@ -87,6 +87,8 @@ a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; 
 .rows li { min-height: 2.9rem; }
 /* The bars sit on the label's centre line, not on the row's bottom edge. */
 .signal { display: inline-flex; align-items: flex-end; align-self: center; gap: 3px; height: 1.4rem; flex: none; }
+.chips { display: flex; flex-wrap: wrap; gap: .6rem; }
+.chips li { padding: .5rem .95rem; border: 1px solid rgb(255 255 255 / .18); border-radius: 999px; font-size: .98rem; line-height: 1.2; }
 .signal i { width: 6px; border-radius: 1px; background: rgb(255 255 255 / .17); }
 .signal i:nth-child(1) { height: 30%; }
 .signal i:nth-child(2) { height: 47.5%; }
@@ -161,6 +163,11 @@ a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; 
   .contact { margin-top: 1.4rem; gap: .55rem; }
   .label { margin: 1.7rem 0 .6rem; }
   .meter li, .rows li { min-height: 0; padding: .12rem 0; font-size: .98rem; border-top: 0; }
+  /* Bars no taller than the label's text, so they centre on it instead of hanging below. */
+  .signal { height: .95rem; gap: 2px; }
+  .signal i { width: 4px; }
+  .chips { gap: .35rem; }
+  .chips li { padding: .25rem .55rem; font-size: .9rem; }
   .label { margin: 1.3rem 0 .4rem; }
   .photo { width: 22mm; height: 22mm; margin-bottom: 3mm; }
   .id { padding-top: 8mm; }
@@ -216,7 +223,7 @@ a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; 
     </ul>
 
     <h2 class="label">Soft skills</h2>
-    <ul class="rows">
+    <ul class="chips">
       <li>Highly Organized &amp; Results Driven</li>
       <li>Team Worker / Player</li>
       <li>Creative</li>
