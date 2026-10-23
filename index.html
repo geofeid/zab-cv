@@ -60,7 +60,8 @@ a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; 
 .main { grid-area: main; padding: 3.25rem 4rem 4rem; min-width: 0; background: var(--paper); }
 
 /* Sidebar */
-.photo { display: block; width: 10rem; height: 10rem; margin-bottom: 1.8rem; border-radius: 50%; object-fit: cover; border: 3px solid var(--amber); box-shadow: 0 0 0 6px rgb(244 166 42 / .14); }
+.id { text-align: center; }
+.photo { display: block; width: 10rem; height: 10rem; margin: 0 auto 1.8rem; border-radius: 50%; object-fit: cover; border: 3px solid var(--amber); box-shadow: 0 0 0 6px rgb(244 166 42 / .14); }
 .name { font-family: var(--display); font-weight: 800; font-size: min(3rem, 3.4vw); line-height: .95; letter-spacing: -.01em; text-transform: uppercase; color: #fff; }
 .name span { display: block; }
 .role { margin-top: 1.3rem; font-size: 1rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--amber); }
@@ -68,19 +69,24 @@ a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; 
 .btn { display: inline-flex; align-items: center; gap: .6rem; margin-top: 1.9rem; padding: .85rem 1.35rem; border-radius: 6px; background: var(--amber); color: var(--petrol); font-size: 1.08rem; font-weight: 700; text-decoration: none; transition: background-color .15s; }
 .btn:hover { background: #ffbb4d; }
 .id a:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 3px; }
-.contact { margin-top: 2.4rem; display: grid; gap: 1rem; font-size: 1.08rem; }
+.contact { margin-top: 2.4rem; display: grid; gap: 1rem; font-size: 1.08rem; text-align: left; }
 .contact li { display: flex; align-items: center; gap: .9rem; overflow-wrap: anywhere; }
 .contact .ic { color: var(--on-petrol-soft); }
 .contact a { text-decoration: none; }
 .contact a:hover { text-decoration: underline; }
+/* Email and LinkedIn open something, so they look like links. */
+.contact a.ext { text-decoration: underline; text-decoration-color: rgb(244 166 42 / .6); }
+.contact a.ext:hover { color: var(--amber); }
 .contact .print-only { display: none; } /* the PDF links back to the online CV */
 .label { margin: 3rem 0 1.1rem; font-size: .95rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--on-petrol-soft); }
 
 /* Skill level as signal strength, 1-5 bars */
 /* Every row gets the same generous height, so the column reads evenly. */
-.meter li { display: flex; align-items: center; justify-content: space-between; gap: 1.25rem; min-height: 3.4rem; padding: .7rem 0; border-top: 1px solid rgb(255 255 255 / .09); font-size: 1.08rem; line-height: 1.35; }
-.meter li:first-child { border-top: 0; }
-.signal { display: inline-flex; align-items: flex-end; gap: 3px; height: 1.4rem; flex: none; }
+.meter li, .rows li { display: flex; align-items: center; justify-content: space-between; gap: 1.25rem; min-height: 3.4rem; padding: .7rem 0; border-top: 1px solid rgb(255 255 255 / .09); font-size: 1.08rem; line-height: 1.35; }
+.meter li:first-child, .rows li:first-child { border-top: 0; }
+.rows li { min-height: 2.9rem; }
+/* The bars sit on the label's centre line, not on the row's bottom edge. */
+.signal { display: inline-flex; align-items: flex-end; align-self: center; gap: 3px; height: 1.4rem; flex: none; }
 .signal i { width: 6px; border-radius: 1px; background: rgb(255 255 255 / .17); }
 .signal i:nth-child(1) { height: 30%; }
 .signal i:nth-child(2) { height: 47.5%; }
@@ -93,9 +99,6 @@ a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; 
 .signal[data-level="4"] i:nth-child(-n+4),
 .signal[data-level="5"] i:nth-child(-n+5) { background: var(--amber); }
 
-.chips { display: flex; flex-wrap: wrap; gap: .6rem; }
-.chips li { padding: .5rem .95rem; border: 1px solid rgb(255 255 255 / .18); border-radius: 999px; font-size: .98rem; line-height: 1.2; }
-.hobbies { font-size: 1.08rem; line-height: 1.9; }
 
 /* Main column */
 .sec + .sec { margin-top: 3.25rem; }
@@ -157,9 +160,10 @@ a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; 
   /* The roomy screen sidebar is tightened so it fits beside one page of content. */
   .contact { margin-top: 1.4rem; gap: .55rem; }
   .label { margin: 1.7rem 0 .6rem; }
-  .meter li { min-height: 0; padding: .45rem 0; }
-  .chips { gap: .4rem; }
-  .chips li { padding: .3rem .6rem; }
+  .meter li, .rows li { min-height: 0; padding: .12rem 0; font-size: .98rem; border-top: 0; }
+  .label { margin: 1.3rem 0 .4rem; }
+  .photo { width: 22mm; height: 22mm; margin-bottom: 3mm; }
+  .id { padding-top: 8mm; }
   .btn, .screen-only { display: none; }
   .print-only { display: block; }
   .contact .print-only { display: flex; }
@@ -195,8 +199,8 @@ a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; 
     <ul class="contact">
       <li class="print-only"><svg class="ic" aria-hidden="true"><use href="#i-globe"/></svg><a href="https://geofeid.github.io/zab-cv/">geofeid.github.io/zab-cv</a></li>
       <li><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><a href="tel:+306970156896">+30 697 015 6896</a></li>
-      <li><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg><a href="mailto:nzabouris@outlook.com">nzabouris@outlook.com</a></li>
-      <li><svg class="ic" aria-hidden="true"><use href="#i-linkedin"/></svg><a href="https://www.linkedin.com/in/nektarios-zabouris">linkedin.com/in/nektarios-zabouris</a></li>
+      <li><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg><a class="ext" href="mailto:nzabouris@outlook.com">nzabouris@outlook.com</a></li>
+      <li><svg class="ic" aria-hidden="true"><use href="#i-linkedin"/></svg><a class="ext" href="https://www.linkedin.com/in/nektarios-zabouris" target="_blank" rel="noopener">linkedin.com/in/nektarios-zabouris</a></li>
       <li><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>Ag. Stefanos, Athens</li>
     </ul>
   </header>
@@ -212,7 +216,7 @@ a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; 
     </ul>
 
     <h2 class="label">Soft skills</h2>
-    <ul class="chips">
+    <ul class="rows">
       <li>Highly Organized &amp; Results Driven</li>
       <li>Team Worker / Player</li>
       <li>Creative</li>
@@ -234,7 +238,13 @@ a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; 
     </ul>
 
     <h2 class="label">Hobbies</h2>
-    <p class="hobbies">Basketball · Hiking · Travel · Books · Volunteering</p>
+    <ul class="rows">
+      <li>Basketball</li>
+      <li>Hiking</li>
+      <li>Travel</li>
+      <li>Books</li>
+      <li>Volunteering</li>
+    </ul>
   </aside>
 
   <main class="main">
