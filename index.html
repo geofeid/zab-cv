@@ -159,16 +159,15 @@ a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; 
   .main { margin-left: 31%; padding: 11mm 10mm 0 8mm; background: none; }
   .name { font-size: 2.7rem; }
   .photo { width: 26mm; height: 26mm; margin-bottom: 4mm; }
-  /* The roomy screen sidebar is tightened so it fits beside one page of content. */
-  .contact { margin-top: 1.4rem; gap: .55rem; }
-  .label { margin: 1.7rem 0 .6rem; }
-  .meter li, .rows li { min-height: 0; padding: .12rem 0; font-size: .98rem; border-top: 0; }
-  /* Bars no taller than the label's text, so they centre on it instead of hanging below. */
-  .signal { height: .95rem; gap: 2px; }
+  /* Use the available A4 height to give the sidebar a relaxed vertical rhythm. */
+  .contact { margin-top: 1.7rem; gap: .8rem; }
+  .label { margin: 1.9rem 0 .7rem; }
+  .meter li, .rows li { min-height: 0; padding: .38rem 0; font-size: .98rem; border-top: 0; }
+  /* Align every signal with the first text line, including wrapped skill labels. */
+  .signal { height: .95rem; gap: 2px; align-self: flex-start; margin-top: calc((.98rem * 1.35 - .95rem) / 2); }
   .signal i { width: 4px; }
-  .chips { gap: .35rem; }
-  .chips li { padding: .25rem .55rem; font-size: .9rem; }
-  .label { margin: 1.3rem 0 .4rem; }
+  .chips { gap: .55rem .35rem; }
+  .chips li { padding: .35rem .55rem; font-size: .9rem; }
   .photo { width: 22mm; height: 22mm; margin-bottom: 3mm; }
   .id { padding-top: 8mm; }
   .btn, .screen-only { display: none; }
